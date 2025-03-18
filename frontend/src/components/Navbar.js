@@ -1,21 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// src/components/Navbar.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';  // Importing the styles for the Navbar
 
-function Navbar() {
+const Navbar = () => {
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white text-xl font-bold">Candle Store</Link>
-        <div>
-          <Link to="/" className="text-gray-300 hover:text-white px-4">Home</Link>
-          <Link to="/products" className="text-gray-300 hover:text-white px-4">Products</Link>
-          <Link to="/about" className="text-gray-300 hover:text-white px-4">About</Link>
-          <Link to="/contact" className="text-gray-300 hover:text-white px-4">Contact</Link>
-          <Link to="/admin" className="text-gray-300 hover:text-white px-4">Admin</Link>
-        </div>
+    <nav className="navbar">
+      <div className="navbar-logo">
+        <Link to="/">Candle Store</Link> {/* Link to Home */}
       </div>
+      <ul className="navbar-links">
+        <li>
+          <Link to="/">Home</Link> {/* Link to Home */}
+        </li>
+        <li>
+          <Link to="/products">Products</Link> {/* Link to Products */}
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link> {/* Link to Contact */}
+        </li>
+      </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;

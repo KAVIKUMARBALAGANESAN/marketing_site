@@ -1,20 +1,16 @@
-require("dotenv").config();  // ✅ Load environment variables at the top
-
-const express = require("express");
-const cors = require("cors");
-const sequelize = require("./config/db");
-const userRoutes = require("./routes/userRoutes");
-const productRoutes = require("./routes/productRoutes");
+const express = require('express');
+const cors = require('cors');
+const apiRoutes = require('./routes/api');
+require('dotenv').config();
 
 const app = express();
+const port = process.env.PORT || 5000;
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
-app.use("/api/users", userRoutes);
-app.use("/api/products", productRoutes);
+app.use('/api', apiRoutes);
 
-sequelize.sync().then(() => console.log("Database connected")).catch(err => console.error("Database connection error:", err));
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(port, () => {
+  console.log(`Backend running on http://localhost:${port}`);
+});

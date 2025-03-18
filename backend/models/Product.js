@@ -1,12 +1,8 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+const pool = require('../config/db');
 
-const Product = sequelize.define("Product", {
-  id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
-  name: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.TEXT },
-  price: { type: DataTypes.FLOAT, allowNull: false },
-  image: { type: DataTypes.STRING },
-});
+const getProducts = async () => {
+  const result = await pool.query('SELECT * FROM products');
+  return result.rows;
+};
 
-module.exports = Product;
+module.exports = { getProducts };

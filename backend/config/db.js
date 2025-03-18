@@ -1,14 +1,12 @@
-const { Sequelize } = require("sequelize");
-require("dotenv").config();  // ✅ Ensure environment variables are loaded
+const { Pool } = require('pg');
+require('dotenv').config();
 
-// Check if DATABASE_URL is set
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is not set in .env file");
-}
-
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: "postgres",
-  logging: false,  // Optional: Disable SQL query logs in console
+const pool = new Pool({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
 });
 
-module.exports = sequelize;
+module.exports = pool;
